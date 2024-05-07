@@ -1,5 +1,6 @@
 /* Declaración de variables globales */
 let nombre ="";
+let control=0;
 /* Declaración de funciones Globales*/
 class gato {
     constructor(nombre, color, funcion, mensaje) {
@@ -21,7 +22,7 @@ const ariel =new gato("Ariel", "Gris", "Hablar sobre los otros gatos", "Soy el d
 /* Primer gato */
 let pregunta= "";
 let repeticion= 0;
-let control=0;
+
 function bolaMagica(){
     let numero = Math.floor(Math.random()*3)+1;
     if (numero == 1){
@@ -54,8 +55,8 @@ function gatoAdivino(){
 
 /* Segundo Gato */
 const palabras=[];
+let repeticionCuento = 0;
 function lapiz(){
-    hablar("Ayúdame a construir mi historia, dame palabras para completar mi relato")
     palabras.push(prompt("Dame una estación de año"));
     palabras.push(prompt("Dame un lugar"));
     palabras.push(prompt("Dame un verbo"));
@@ -65,9 +66,64 @@ function lapiz(){
     hablar("Era una oscura noche de " + palabras[0] + " Cuando " + nombre + " entró a " + palabras[1]+ ", a lo lejos vio una persona " + palabras[2]+ ", vio una estatua que era " + palabras[3], " La estatua se levanto corrió donde la persona y le cortó " + palabras[4]+
     ", lo único que " + nombre + " puedo hacer fue " + palabras[5]);
 }
+function gatoEscritor(){
+    hablar("Ayúdame a construir mi historia, dame palabras para completar mi relato");
+    lapiz();
+    repeticionCuento= prompt("¿Quiéres intentar denuevo? 1. Si 2. No");
+    if (repeticionCuento == 1){
+        control= 2;}
+    else if (repeticionCuento == 2){
+        hablar("Asi que ya quedaste asustad@ " + nombre + " Ten un excelente día");
+        control= 10;
+    }
+    else{
+        hablar("Opción invalida");
+        control= 2;
+    }
+}
 
 /* Tercer gato */
- 
+    function gatoConsejero(){
+        hablar("Eres una gran persona, nunca olvides tu gran potencial!");
+        control= 10;
+    }
 /* Cuarto gato */
 
 /* Menú principal del simulador */
+alert("Bienvenid@ a Cat Village");
+
+nombre = prompt("Para comenzar, Escriba su nombre");
+
+hablar("Hola " + nombre + " ¿Con que gato quieres hablar?");
+
+while (control == 0){
+    let menu= prompt("1. Madam La Purr 2.Cathespiare 3. Miau La Casan 4.Ariel, The owner")
+    if (menu == 1){
+        control=1;
+        while (control==1){
+            gatoAdivino();
+        }
+    }
+    else if (menu== 2){
+        control=2;
+        while (control==2){
+            gatoEscritor();
+        }
+    }
+    else if (menu == 3){
+        control = 3;
+        while (control == 3){
+            gatoConsejero();
+        }
+    }
+    else if( menu == 4){
+        control = 4;
+        while (control == 4){
+            gatoOwner();
+        }
+    }
+    else{
+        hablar("Opción invalida")
+    }
+
+}
